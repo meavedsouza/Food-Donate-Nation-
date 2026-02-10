@@ -16,21 +16,29 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 30px;
+  padding: 14px 20px;
   background: linear-gradient(135deg, #27ae60, #2ecc71);
   color: white;
+  flex-wrap: wrap; /* KEY FIX */
 }
 
 .navbar h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .navbar a {
-  margin-left: 18px;
   color: white;
   text-decoration: none;
   font-weight: 500;
+  font-size: 15px;
 }
 
 .hero {
@@ -300,4 +308,116 @@ textarea:focus {
   max-width: 720px;
   margin: 20px auto;
   line-height: 1.6;
+}
+
+
+@media (max-width: 768px) {
+
+  
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .navbar a {
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+
+  .hero {
+    padding: 50px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .tagline {
+    font-size: 15px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    max-width: 260px;
+    margin-top: 15px;
+  }
+
+  .hero-image img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  
+  .impact-section {
+    padding: 50px 20px;
+  }
+
+  .impact-content {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .impact-image img {
+    max-width: 300px;
+    height: auto;
+  }
+
+
+  .info-section {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+
+  .info-card {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+
+ 
+  .form-section {
+    margin-top: -20px;
+    padding: 0 15px 40px;
+  }
+
+  .donation-form,
+  .auth-form {
+    padding: 25px 20px;
+  }
+
+ 
+  .about,
+  .future {
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .primary-btn {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .navbar h2 {
+    font-size: 18px;
+  }
 }
