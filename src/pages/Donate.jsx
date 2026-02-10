@@ -70,14 +70,14 @@ function Donate() {
 
          <label>Pickup Option</label>
 
-          <div className="radio-group">
-          <label className="radio-item">
-            <input type="radio" name="pickup_option"value="drop" checked={formData.pickup_option === "drop"}onChange={handleChange}/>
+          <div align="left" className="radio-group">
+          <label align="left"  className="radio-item">
+            <input align="left"  type="radio" name="pickup_option"value="drop" checked={formData.pickup_option === "drop"}onChange={handleChange}/>
                <span>I will drop the food</span>
           </label>
 
-          <label className="radio-item">
-            <input type="radio"name="pickup_option" value="pickup" checked={formData.pickup_option === "pickup"} onChange={handleChange}/>
+          <label align="left" className="radio-item">
+            <input align="left" type="radio"name="pickup_option" value="pickup" checked={formData.pickup_option === "pickup"} onChange={handleChange}/>
             <span>Request pickup</span>
            </label>
       
