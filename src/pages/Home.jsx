@@ -19,7 +19,7 @@ function Home() {
 
   return (
     <div>
-      {/* HERO */}
+  
       <section className="hero">
         <div className="hero-content">
           <h1>🍽️ Food Donation Platform</h1>
@@ -37,7 +37,7 @@ function Home() {
         </div>
       </section>
 
-      {/* IMPACT (TEXT ONLY) */}
+ 
       <section className="impact-section">
         <h2>Food is meant to be shared</h2>
         <p>
@@ -51,14 +51,14 @@ function Home() {
         </Link>
       </section>
 
-      {/* FUTURE */}
+     
       <section className="future">
         <h2>Want to Help More?</h2>
         <p>
           Soon, you’ll be able to join us as a volunteer or partner NGO and help
           distribute food efficiently.
         </p>
-        <span className="coming-soon">Join Us — Coming Soon 🤝</span>
+        <span className="coming-soon">Join Us 🤝</span>
       </section>
     </div>
   );

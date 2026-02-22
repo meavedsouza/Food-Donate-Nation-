@@ -1,42 +1,60 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Donate() {
   const navigate = useNavigate();
 
+  const [showPopup, setShowPopup] = React.useState(false);
+
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",
-    food_type: "Veg",
+    foodType: "Veg",
     quantity: "",
-    cooked_time: "Less than 1 hour",
+    cookedTime: "Less than 1 hour",
     location: "",
-    pickup_option: "drop"
+    pickupOption: "drop"
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
   };
 
-  // ✅ THIS WAS MISSING
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Donation Submitted:", formData);
+    try {
+      await axios.post("http://localhost:5000/api/donations", formData);
+      setShowPopup(true);
 
-    // later: send to backend / firebase
-    navigate("/success");
+      setFormData({
+        name: "",
+        phone: "",
+        foodType: "Veg",
+        quantity: "",
+        cookedTime: "Less than 1 hour",
+        location: "",
+        pickupOption: "drop"
+      });
+
+    } catch (error) {
+      console.error("Error submitting donation:", error);
+    }
+  };
+
+  const goHome = () => {
+    navigate("/Home");
   };
 
   return (
     <div>
       <div className="hero small-hero">
         <h1>Donate Food</h1>
-      
       </div>
 
       <div className="form-section">
@@ -49,38 +67,49 @@ function Donate() {
           <input name="phone" value={formData.phone} onChange={handleChange} required />
 
           <label>Food Type</label>
-          <select name="food_type" value={formData.food_type} onChange={handleChange}>
-            <option>Veg</option>
-            <option>Non-Veg</option>
-            <option>Packed</option>
+          <select name="foodType" value={formData.foodType} onChange={handleChange}>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+            <option value="Packed">Packed</option>
           </select>
 
           <label>Quantity</label>
           <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
 
           <label>Cooked Time</label>
-          <select name="cooked_time" value={formData.cooked_time} onChange={handleChange}>
-            <option>Less than 1 hour</option>
-            <option>1–2 hours</option>
-            <option>More than 2 hours</option>
+          <select name="cookedTime" value={formData.cookedTime} onChange={handleChange}>
+            <option value="Less than 1 hour">Less than 1 hour</option>
+            <option value="1–2 hours">1–2 hours</option>
+            <option value="More than 2 hours">More than 2 hours</option>
           </select>
 
           <label>Location</label>
           <input name="location" value={formData.location} onChange={handleChange} required />
 
-         <label>Pickup Option</label>
+          <label>Pickup Option</label>
 
-          <div align="left" className="radio-group">
-          <label align="left"  className="radio-item">
-            <input align="left"  type="radio" name="pickup_option"value="drop" checked={formData.pickup_option === "drop"}onChange={handleChange}/>
-               <span>I will drop the food</span>
-          </label>
+          <div className="radio-group">
+            <label>
+              <input
+                type="radio"
+                name="pickupOption"
+                value="drop"
+                checked={formData.pickupOption === "drop"}
+                onChange={handleChange}
+              />
+              Drop
+            </label>
 
-          <label align="left" className="radio-item">
-            <input align="left" type="radio"name="pickup_option" value="pickup" checked={formData.pickup_option === "pickup"} onChange={handleChange}/>
-            <span>Request pickup</span>
-           </label>
-      
+            <label>
+              <input
+                type="radio"
+                name="pickupOption"
+                value="pickup"
+                checked={formData.pickupOption === "pickup"}
+                onChange={handleChange}
+              />
+              Pickup
+            </label>
           </div>
 
           <button type="submit" className="primary-btn full-btn">
@@ -88,6 +117,15 @@ function Donate() {
           </button>
         </form>
       </div>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>Donation Successful ❤️</h3>
+            <button onClick={goHome}>Go to Home</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
