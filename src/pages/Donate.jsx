@@ -29,7 +29,7 @@ function Donate() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/donations", formData);
+      await axios.post("https://share-a-plate-aw94.onrender.com/api/donations", formData);
       setShowPopup(true);
 
       setFormData({
